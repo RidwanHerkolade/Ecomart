@@ -6,13 +6,13 @@ import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import { AddContext } from "../../../Context/AddContext";
 import Category from "../Category/Category";
 import { products } from "../Product/Product";
+import { fadeIn } from "../../../Variant";
+import { motion } from "framer-motion";
 import "./Newarrival.css";
 
 const Newarrival = () => {
   const {currentPage, setCurrentPage} = useContext(AddContext)
   const itemsPerPage = 4;
-  // const [currentPage, setCurrentPage] = useState(0)
-  // const [selectedPage, setSelectedPage] = useState(null)
 
   const totalPages = Math.ceil(products.length / itemsPerPage)
 
@@ -30,11 +30,16 @@ const Newarrival = () => {
 }
   return (
     <div className="newarrival__div">
-      <div className="arrival">
+      <motion.div className="arrival" variants={fadeIn("down", 0.4)} initial="hidden" whileInView={"show"} viewport={{once: false, amount: 0.4}}>
         <h1>New Arrival</h1>
         <div className="product__div">
           {currentProduct.map((product) => {
             return [
+              <motion.div
+                className="box"
+                whileHover={{ scale: [null, 1.06, 1.05] }}
+                transition={{ duration: 0.2 }}
+              >
               <div className="product" key={product.id} onClick={() => setSelectedPage(product)}>
                 <div className="product__icons">
                   <ShoppingCartIcon />
@@ -50,7 +55,8 @@ const Newarrival = () => {
                     {product.rating} {product.reviews}
                   </div>
                 </div>
-              </div>,
+              </div>
+              </motion.div>
             ];
           })}
         </div>
@@ -90,7 +96,7 @@ const Newarrival = () => {
           </div>
         </div>
         
-      </div>
+      </motion.div>
       <Category/>
     </div>
   );

@@ -21,7 +21,8 @@ export default function CategorySlider() {
         onChange={handleChange}
         valueLabelDisplay="auto"
         getAriaValueText={valuetext}
-        style={{color: "#2A2B2B"}}
+        style={{color: "#fffff"}}
+        orientation="vertical" 
       />
     </Box>
   );

@@ -65,16 +65,20 @@ const Category = () => {
 
   // handling of the cart items
   const handleCartItems = (product) => {
-    setAddCartItem((prevItem) => {
-      const existingProduct = prevItem.find((item) => item.id === product.id);
+    setAddCartItem((prevItems) => {
+      const existingProduct = prevItems.find((item) => item.id === product.id); 
       if (existingProduct) {
-        prevItem.map((item) => {
-          item.id === product.id
-            ? { ...item, quantity: item.quantity + 1 }
-            : item;
-        });
+        // If product exists, update the quantity
+        return prevItems.map((item) => 
+          item.id === product.id ? { ...item, quantity: item.quantity + 1 } : item
+        );
+      } else {
+        // If product doesn't exist, add it to the cart with quantity 1
+        return [
+          ...prevItems,
+          { ...product, price: product.price ?? 0, quantity: 1 },
+        ];
       }
-      return [...prevItem, { ...product, quantity: 1 }];
     });
   };
 
@@ -281,7 +285,7 @@ const Category = () => {
         <div className="categories__div">
           {filterCategories.map((product) => {
             return [
-              <div className="product" key={product.id}>
+              <div className="product_cat" key={product.id}>
                 <div className="product__icons">
                   <ShoppingCartIcon onClick={() => handleCartItems(product)}/>
                 </div>

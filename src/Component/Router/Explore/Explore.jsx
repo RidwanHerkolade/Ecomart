@@ -6,9 +6,11 @@ import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import StarIcon from "@mui/icons-material/Star";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
+import { motion } from "framer-motion";
 import "./Explore.css";
 
 const Explore = () => {
+  
   // Identification of each company product
   const [filterShoeProduct, setFilterShoeProduct] = useState(shoeData);
 
@@ -19,7 +21,6 @@ const Explore = () => {
   };
 
   const numberShoesPerPage = 12;
-
   const [shoeCurrentPage, setShoeCurrentPage] = useState(0);
   const totalCurrentPage = Math.ceil(filterShoeProduct.length / numberShoesPerPage);
   
@@ -40,9 +41,28 @@ const Explore = () => {
       setShoeCurrentPage(shoeCurrentPage - 1);
     }
   };
-
+  
   const handlePageChange = (index) => {
     setShoeCurrentPage(index);
+  };
+
+   // handling of the cart items
+   const handleCartItems = (product) => {
+    setAddCartItem((prevItems) => {
+      const existingProduct = prevItems.find((item) => item.id === product.id); 
+      if (existingProduct) {
+        // If product exists, update the quantity
+        return prevItems.map((item) => 
+          item.id === product.id ? { ...item, quantity: item.quantity + 1 } : item
+        );
+      } else {
+        // If product doesn't exist, add it to the cart with quantity 1
+        return [
+          ...prevItems,
+          { ...product, price: product.price ?? 0, quantity: 1 },
+        ];
+      }
+    });
   };
 
   return (
@@ -59,7 +79,12 @@ const Explore = () => {
           />
           <div className="shoes__div">
             {shoePages.map((data) => (
-              <div className="shoe_product" key={data.id}>
+              <motion.div
+              className="box"
+              whileHover={{ scale: [null, 1.06, 1.05] }}
+              transition={{ duration: 0.2 }}
+            >
+              <div className="shoe_product" key={data.id} style={{cursor: "pointer", margin: "1rem 0rem"}}>
                 <div className="product__icons">
                   <ShoppingCartIcon />
                 </div>
@@ -75,6 +100,7 @@ const Explore = () => {
                   </div>
                 </div>
               </div>
+               </motion.div>
             ))}
           </div>
 

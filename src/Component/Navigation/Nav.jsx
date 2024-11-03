@@ -7,6 +7,8 @@ import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
 import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
 import { AddContext } from "../../Context/AddContext";
+import { motion } from "framer-motion";
+import { fadeIn } from "../../Variant";
 
 import NavInput from "./NavInput";
 const Nav = () => {
@@ -28,7 +30,7 @@ const Nav = () => {
     setHide(!hide);
   };
   return (
-    <div className="nav_div">
+    <motion.div className="nav_div" variants={fadeIn("down", 0.4)} initial="hidden" whileInView={"show"} viewport={{ once: false, amount: 0.4 }}>
       <nav>
         <Link to="/" style={{ color: "#2A2B2B" }}>
           {" "}
@@ -136,15 +138,9 @@ const Nav = () => {
             )}
           </div>
           </div>
-          {/* <div className="menu__divs" >
-            {hide ? (
-              <CloseIcon style={{ fontSize: "2rem", color: "#2A2B2B" }} onClick={handleHide}/>
-            ) : (
-              <MenuIcon style={{ fontSize: "2rem", color: "#2A2B2B" }} onClick={handleHide}/>
-            )}
-          </div> */}
+         
       </nav>
-    </div>
+    </motion.div>
   );
 };
 

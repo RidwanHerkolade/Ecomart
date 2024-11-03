@@ -23,6 +23,7 @@
 }
 .blogg__div {
     display: grid;
+    position: relative;
     grid-template-columns: repeat(3, 1fr);
     gap: 2rem;
     padding: 2rem ;
@@ -52,6 +53,7 @@
     color: var(--color-nav);
     font-weight: 700;
 }
+
 .blog__headers {
     margin: 0.5rem;
 }
