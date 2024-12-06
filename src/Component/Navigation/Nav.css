@@ -140,7 +140,6 @@ ul li #active {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        border: 1px solid red;
         padding: 0rem 0rem;
     }
     .menu__divs {
@@ -155,9 +154,8 @@ ul li #active {
         width: 100%;
         z-index: 11;
         position: absolute;
-        border: 2px solid red;
         padding: 1rem 0rem;
-        background: red;
+        background: var(--color-border);
         justify-content: center;
         gap: 0rem;
     } 
@@ -187,7 +185,7 @@ ul li #active {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        border: 1px solid red;
+        /* border: 1px solid red; */
         padding: 0rem 0rem;
     }
     .menu__divs {
@@ -202,9 +200,8 @@ ul li #active {
         width: 100%;
         z-index: 11;
         position: absolute;
-        border: 2px solid red;
         padding: 1rem 0rem;
-        background: red;
+        background: var(--color-border);
         justify-content: center;
         gap: 0rem;
     } 
@@ -247,9 +244,8 @@ ul li #active {
         width: 100%;
         z-index: 11;
         position: absolute;
-        border: 2px solid red;
         padding: 1rem 0rem;
-        background: red;
+        background: var(--color-border);
         justify-content: center;
         gap: 0rem;
     } 
